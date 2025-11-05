@@ -34,6 +34,7 @@ serve(async (req) => {
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Foursquare API error:", response.status, errorText);
+      console.error("API Key being used:", apiKey ? "Key exists (length: " + apiKey.length + ")" : "No key found");
       throw new Error(`Foursquare API error: ${response.status}`);
     }
 
