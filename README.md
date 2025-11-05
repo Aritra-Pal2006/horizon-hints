@@ -1,73 +1,221 @@
-# Welcome to your Lovable project
+# AI Travel Guide – Smart AI-Powered Travel Planner 🌍
 
-## Project info
+A modern, sleek, and responsive AI Travel Guide web app that helps users plan trips intelligently using AI technologies.
 
-**URL**: https://lovable.dev/projects/a2b9e88d-112a-4b8b-b00e-3dc09d035065
+## 🌟 Features
 
-## How can I edit this code?
+### Core Features
+- **AI Travel Assistant**: Chat-based assistant powered by Google Gemini API
+- **AI Itinerary Generator**: Creates structured day-by-day travel plans
+- **Smart Destination Recommender**: Suggests travel spots based on preferences
+- **Weather Integration**: Real-time weather data from OpenWeather API
+- **City Search**: Autocomplete destination search with GeoDB Cities API
+- **Nearby Attractions**: Points of interest from Foursquare Places API
+- **Interactive Maps**: Mapbox integration for visualizing destinations
+- **User Authentication**: Firebase Auth for secure login/signup
+- **Favorites & Notes**: Save destinations and personal travel notes
+- **Floating Chatbot**: Always-accessible AI assistant
 
-There are several ways of editing your application.
+### Technical Features
+- **Modern UI**: Built with React.js, TailwindCSS, and Shadcn UI
+- **Responsive Design**: Works on all device sizes
+- **Real-time Data**: Live information about attractions and places
+- **Data Persistence**: Firebase Firestore for storing user data
+- **Secure Authentication**: Email/password and Google OAuth options
 
-**Use Lovable**
+## 🛠️ Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a2b9e88d-112a-4b8b-b00e-3dc09d035065) and start prompting.
+- **Frontend**: React.js + TailwindCSS + Shadcn UI
+- **Backend / DB / Auth**: Firebase (Authentication + Firestore + Hosting)
+- **AI Engine**: Google Gemini API
+- **Mapping**: Mapbox
+- **Weather Data**: OpenWeather API
+- **City Search**: GeoDB Cities API
+- **Attractions**: Foursquare Places API
+- **Deployment**: Firebase Hosting
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+- Firebase account
+- API keys for all services (see below)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd ai-travel-guide
 ```
 
-**Edit a file directly in GitHub**
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. Create a `.env` file in the root directory with your API keys:
+```env
+# Firebase Config
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_firebase_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_firebase_measurement_id
 
-**Use GitHub Codespaces**
+# API Keys
+VITE_GEMINI_API_KEY=your_gemini_api_key
+VITE_OPENWEATHER_API_KEY=your_openweather_api_key
+VITE_GEODB_API_KEY=your_geodb_api_key
+VITE_FOURSQUARE_API_KEY=your_foursquare_api_key
+VITE_MAPBOX_TOKEN=your_mapbox_token
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+4. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-## What technologies are used for this project?
+5. Open your browser to `http://localhost:8080`
 
-This project is built with:
+### Building for Production
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```bash
+npm run build
+# or
+yarn build
+```
 
-## How can I deploy this project?
+### Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/a2b9e88d-112a-4b8b-b00e-3dc09d035065) and click on Share -> Publish.
+The app is configured for Firebase Hosting. To deploy:
 
-## Can I connect a custom domain to my Lovable project?
+1. Install Firebase CLI:
+```bash
+npm install -g firebase-tools
+```
 
-Yes, you can!
+2. Login to Firebase:
+```bash
+firebase login
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+3. Initialize Firebase in your project:
+```bash
+firebase init
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+4. Deploy:
+```bash
+firebase deploy
+```
+
+## 📁 Project Structure
+
+```
+ai-travel-guide/
+│
+├── public/
+│   ├── assets/        ← icons, images
+│
+├── src/
+│   ├── components/
+│   │   ├── Navbar.tsx
+│   │   ├── Footer.tsx
+│   │   ├── ChatBot.tsx
+│   │   ├── WeatherCard.tsx
+│   │   ├── DestinationCard.tsx
+│   │   ├── MapView.tsx
+│   │   └── Loader.tsx
+│   │
+│   ├── pages/
+│   │   ├── Home.tsx
+│   │   ├── Explore.tsx
+│   │   ├── DestinationDetails.tsx
+│   │   ├── Itinerary.tsx
+│   │   ├── Favorites.tsx
+│   │   ├── Profile.tsx
+│   │   ├── Login.tsx
+│   │   ├── Signup.tsx
+│   │   └── ForgotPassword.tsx
+│   │
+│   ├── contexts/
+│   │   └── AuthContext.tsx
+│   │
+│   ├── utils/
+│   │   ├── firebase.ts           ← Firebase config
+│   │   ├── weatherService.ts     ← OpenWeather API calls
+│   │   ├── geoDBService.ts       ← GeoDB API calls
+│   │   └── firestoreService.ts   ← Firestore data operations
+│   │
+│   ├── App.tsx
+│   └── main.tsx
+│
+├── .env                          ← API keys (not in repo)
+└── package.json
+```
+
+## 🔐 API Keys Setup
+
+To run this application, you'll need to obtain API keys for the following services:
+
+1. **Firebase**: Create a Firebase project at https://console.firebase.google.com/
+2. **Google Gemini API**: Get an API key at https://ai.google.dev/
+3. **OpenWeather API**: Register at https://openweathermap.org/api
+4. **GeoDB Cities API**: Get a key at https://rapidapi.com/wirefreethought/api/geodb-cities/
+5. **Foursquare Places API**: Register at https://developer.foursquare.com/
+6. **Mapbox**: Create an account at https://www.mapbox.com/
+
+## 🎨 UI/UX Design
+
+- **Sleek, modern, mobile-first design** using TailwindCSS + Shadcn UI
+- **Smooth animations** with Framer Motion
+- **Consistent color palette** (sky blue, soft white, gray tones)
+- **Responsive layout** that works on all device sizes
+- **Intuitive navigation** with a clean navbar
+
+## 🔄 App Flow
+
+1. **Home Page**: Hero banner, destination search, quick actions
+2. **Explore Page**: Curated destinations, search functionality
+3. **Destination Details**: Comprehensive information about a location
+4. **AI Planner**: Chat interface and itinerary generation
+5. **Map Explorer**: Interactive map with attractions
+6. **Favorites**: Saved destinations and itineraries
+7. **Profile**: User information and saved data
+8. **Auth Pages**: Login, signup, and password reset
+
+## 💾 Data Structure
+
+The app uses Firebase Firestore with the following collections:
+
+- **users**: User profiles and preferences
+- **itineraries**: Generated travel plans
+- **favorites**: Saved destinations
+- **chatMessages**: Conversation history with AI assistant
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Thanks to all API providers for their excellent services
+- UI components powered by Shadcn UI
+- Icons from Lucide React
+- Animations with Framer Motion

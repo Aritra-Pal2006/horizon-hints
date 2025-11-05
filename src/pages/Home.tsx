@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Search, MapPin, Sparkles, TrendingUp, Globe } from "lucide-react";
+import { Search, MapPin, Sparkles, TrendingUp, Globe, Heart, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Home = () => {
   const [destination, setDestination] = useState("");
   const navigate = useNavigate();
+  const { user } = useAuth();
+
+  // Redirect to landing page if not authenticated
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   const handleSearch = () => {
     if (destination.trim()) {
@@ -22,6 +31,18 @@ const Home = () => {
     { name: "New York, USA", image: "🗽", color: "from-blue-500 to-cyan-500" },
     { name: "Bali, Indonesia", image: "🏝️", color: "from-green-500 to-emerald-500" },
   ];
+
+  // Show loading state while checking authentication
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-secondary/30 to-background">
@@ -89,6 +110,63 @@ const Home = () => {
               </Button>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Quick Actions */}
+      <section className="py-12 px-4 bg-gradient-to-b from-transparent to-secondary/10">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Button 
+              variant="outline" 
+              className="h-auto py-6 flex flex-col items-center justify-center gap-3 backdrop-blur-xl bg-card/80 border-border hover:bg-card/50"
+              onClick={() => navigate("/explore")}
+            >
+              <Globe className="w-8 h-8 text-primary" />
+              <div className="text-center">
+                <h3 className="font-bold">Explore Destinations</h3>
+                <p className="text-sm text-muted-foreground mt-1">Discover amazing places</p>
+              </div>
+            </Button>
+            
+            <Button 
+              variant="outline" 
+              className="h-auto py-6 flex flex-col items-center justify-center gap-3 backdrop-blur-xl bg-card/80 border-border hover:bg-card/50"
+              onClick={() => navigate("/planner")}
+            >
+              <Sparkles className="w-8 h-8 text-primary" />
+              <div className="text-center">
+                <h3 className="font-bold">AI Trip Planner</h3>
+                <p className="text-sm text-muted-foreground mt-1">Create personalized itineraries</p>
+              </div>
+            </Button>
+            
+            {user ? (
+              <Button 
+                variant="outline" 
+                className="h-auto py-6 flex flex-col items-center justify-center gap-3 backdrop-blur-xl bg-card/80 border-border hover:bg-card/50"
+                onClick={() => navigate("/favorites")}
+              >
+                <Heart className="w-8 h-8 text-primary" />
+                <div className="text-center">
+                  <h3 className="font-bold">My Favorites</h3>
+                  <p className="text-sm text-muted-foreground mt-1">View saved destinations</p>
+                </div>
+              </Button>
+            ) : (
+              <Button 
+                variant="outline" 
+                className="h-auto py-6 flex flex-col items-center justify-center gap-3 backdrop-blur-xl bg-card/80 border-border hover:bg-card/50"
+                onClick={() => navigate("/login")}
+              >
+                <Calendar className="w-8 h-8 text-primary" />
+                <div className="text-center">
+                  <h3 className="font-bold">Save Your Trips</h3>
+                  <p className="text-sm text-muted-foreground mt-1">Login to save itineraries</p>
+                </div>
+              </Button>
+            )}
+          </div>
         </div>
       </section>
 
