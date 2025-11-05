@@ -104,9 +104,14 @@ const MapExplorer = () => {
       } else {
         toast.info("No places found");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Search error:", error);
-      toast.error("Failed to search places");
+      const msg = typeof error?.message === "string" ? error.message : "";
+      if (msg.includes("401")) {
+        toast.error("Foursquare API key is invalid (401). Please update it in Backend Secrets.");
+      } else {
+        toast.error("Failed to search places");
+      }
     } finally {
       setIsSearching(false);
     }
