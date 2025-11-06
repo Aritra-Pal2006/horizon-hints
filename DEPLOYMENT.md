@@ -7,6 +7,7 @@ This guide explains how to deploy the Horizon Hints application on Render.
 1. **[render.yaml](render.yaml)** - Configuration file for Render deployment
 2. **[README.md](README.md)** - Updated with Render deployment instructions
 3. **[.env](.env)** - Added deployment notes for Render
+4. **[vite.config.ts](vite.config.ts)** - Updated to allow Render preview hosts
 
 ## Render Deployment Steps
 
@@ -21,7 +22,7 @@ This guide explains how to deploy the Horizon Hints application on Render.
    - Root Directory: (leave empty)
    - Environment: Node
    - Build Command: `npm run build`
-   - Start Command: `npm run preview`
+   - Start Command: `npm run preview -- --host 0.0.0.0 --port $PORT`
    - Auto Deploy: Yes (if you want automatic deployments on push)
 
 6. Add environment variables in the Render dashboard:
@@ -53,6 +54,10 @@ VITE_FOURSQUARE_API_KEY
 VITE_MAPBOX_TOKEN
 ```
 
+## Host Configuration
+
+The Vite configuration has been updated to allow requests from the Render preview URL (`horizon-hints.onrender.com`). This resolves the "Blocked request" error that occurs when trying to access the application.
+
 ## Supabase Functions
 
 Note that this application uses Supabase functions for the AI chat feature. If you're using Supabase, you'll need to deploy those functions separately:
@@ -69,6 +74,7 @@ If you encounter issues during deployment:
 2. Ensure the build command completes successfully
 3. Check the logs in the Render dashboard for any error messages
 4. Verify that your API keys are valid and have the necessary permissions
+5. If you see "Blocked request" errors, ensure the vite.config.ts file includes the Render host in allowedHosts
 
 ## Support
 
