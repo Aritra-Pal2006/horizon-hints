@@ -95,6 +95,8 @@ yarn build
 
 ### Deployment
 
+#### Firebase Hosting (Default)
+
 The app is configured for Firebase Hosting. To deploy:
 
 1. Install Firebase CLI:
@@ -116,6 +118,32 @@ firebase init
 ```bash
 firebase deploy
 ```
+
+#### Render Deployment
+
+This project can also be deployed on Render using the provided [render.yaml](render.yaml) configuration file.
+
+1. Fork this repository to your GitHub account
+2. Sign up or log in to [Render](https://render.com/)
+3. Click "New +" and select "Web Service"
+4. Connect your GitHub repository
+5. Configure the service with these settings:
+   - Name: horizon-hints (or your preferred name)
+   - Region: (your choice)
+   - Branch: main (or your preferred branch)
+   - Root Directory: (leave empty)
+   - Environment: Node
+   - Build Command: `npm run build`
+   - Start Command: `npm run preview`
+   - Auto Deploy: Yes (if you want automatic deployments on push)
+
+6. Add environment variables in the Render dashboard:
+   Go to the "Environment" section and add all the environment variables from your `.env` file.
+   Important: Remove the `VITE_` prefix when adding them to Render as they need to be available at build time.
+
+7. Click "Create Web Service" to deploy
+
+The application will automatically build and deploy. Render will provide you with a URL where your application can be accessed.
 
 ## 📁 Project Structure
 
